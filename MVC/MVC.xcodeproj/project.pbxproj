@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		428A4FF82BA8D29100693BF5 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428A4FF72BA8D29100693BF5 /* Movie.swift */; };
+		428A4FFB2BA9F78000693BF5 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428A4FFA2BA9F78000693BF5 /* MovieService.swift */; };
 		A5CBBC332BA8CF3200EFB8A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBBC322BA8CF3200EFB8A8 /* AppDelegate.swift */; };
 		A5CBBC352BA8CF3200EFB8A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBBC342BA8CF3200EFB8A8 /* SceneDelegate.swift */; };
 		A5CBBC372BA8CF3200EFB8A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CBBC362BA8CF3200EFB8A8 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		428A4FF72BA8D29100693BF5 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		428A4FFA2BA9F78000693BF5 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 		A5CBBC2F2BA8CF3200EFB8A8 /* MVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CBBC322BA8CF3200EFB8A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CBBC342BA8CF3200EFB8A8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
+		428A4FF92BA9F75B00693BF5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				428A4FFA2BA9F78000693BF5 /* MovieService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		A5CBBC262BA8CF3200EFB8A8 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +96,7 @@
 		A5CBBC312BA8CF3200EFB8A8 /* MVC */ = {
 			isa = PBXGroup;
 			children = (
+				428A4FF92BA9F75B00693BF5 /* Service */,
 				428A4FF62BA8D25100693BF5 /* AppDelegate */,
 				428A4FF52BA8D24200693BF5 /* Controller */,
 				428A4FF42BA8D23F00693BF5 /* View */,
@@ -169,6 +180,7 @@
 				A5CBBC332BA8CF3200EFB8A8 /* AppDelegate.swift in Sources */,
 				428A4FF82BA8D29100693BF5 /* Movie.swift in Sources */,
 				A5CBBC352BA8CF3200EFB8A8 /* SceneDelegate.swift in Sources */,
+				428A4FFB2BA9F78000693BF5 /* MovieService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
