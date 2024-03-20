@@ -10,9 +10,7 @@ import Combine
 
 class MoviesView: UIViewController, UITableViewDataSource {
     
-    //MARK: UITableView Sections
-
-    
+    //MARK: - UITableView Sections    
     private let tableView = UITableView()
     
     private var controller: MoviesViewController  = MoviesViewController()
@@ -28,6 +26,7 @@ class MoviesView: UIViewController, UITableViewDataSource {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(MovieCell.self, forCellReuseIdentifier: "MovieCell")
         tableView.rowHeight = 118
         
@@ -37,6 +36,22 @@ class MoviesView: UIViewController, UITableViewDataSource {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+}
+
+extension MoviesView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var movie: Movie!
+        
+        if indexPath.section == 0 {
+            movie = controller.nowPlaying[indexPath.row]
+        } else if indexPath.section == 1 {
+            movie = controller.popular[indexPath.row]
+        }
+        
+        let controller = MovieDetailsViewController(movie: movie)
+        navigationController?.pushViewController(MovieDetailsView(controller: controller), animated: true)
     }
 }
 
@@ -78,5 +93,6 @@ extension MoviesView {
     
         return cell
     }
+    
 }
 
