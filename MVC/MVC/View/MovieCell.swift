@@ -7,31 +7,29 @@
 import UIKit
 
 class MovieCell: UITableViewCell {
-    private let cover: UIImageView = {
+    let cover: UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.image = UIImage(named: "spider")
         img.contentMode = .scaleAspectFill
+        img.clipsToBounds = true
         img.layer.cornerRadius = 10
         return img
     }()
-    private let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let title = UILabel()
         title.font = UIFont.preferredFont(forTextStyle: .headline)
-        title.text = "Spider-Man"
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
-    private let descriptionLabel: UILabel = {
+    let descriptionLabel: UILabel = {
         let description = UILabel()
         description.font = UIFont.preferredFont(forTextStyle: .caption1)
         description.textColor = UIColor.gray
-        description.text = "A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra"
         description.numberOfLines = 3
         description.translatesAutoresizingMaskIntoConstraints = false
         return description
     }()
-    private let starImage: UIImageView = {
+    let starImage: UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.image = UIImage(systemName: "star")
@@ -39,11 +37,10 @@ class MovieCell: UITableViewCell {
         img.contentMode = .scaleAspectFit
         return img
     }()
-    private let ratingLabel: UILabel = {
+    let ratingLabel: UILabel = {
         let rating = UILabel()
         rating.font = UIFont.preferredFont(forTextStyle: .footnote)
         rating.textColor = UIColor.gray
-        rating.text = "7.8"
         rating.translatesAutoresizingMaskIntoConstraints = false
         return rating
     }()
@@ -87,5 +84,4 @@ class MovieCell: UITableViewCell {
             ratingLabel.centerYAnchor.constraint(equalTo: starImage.centerYAnchor)
         ])
     }
-    
 }
