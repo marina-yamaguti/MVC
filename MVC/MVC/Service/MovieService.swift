@@ -38,6 +38,16 @@ struct MovieService {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+    
+    func fetchMoviePosterFor(posterPath: String, withSize size: PosterSize = .w500) -> AnyPublisher<Data, Error> {
+        let url = self.buildPosterURLFor(posterPath: posterPath)
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap(\.data)
+            .mapError({ $0 as Error })
+            .subscribe(on: DispatchQueue.global(qos: .userInitiated))
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
 }
 
 extension MovieService {
