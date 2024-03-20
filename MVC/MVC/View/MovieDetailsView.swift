@@ -9,6 +9,17 @@ import UIKit
 
 class MovieDetailsView: UIViewController, UIScrollViewDelegate {
     
+    let controller: MovieDetailsViewController
+    
+    init(controller: MovieDetailsViewController) {
+        self.controller = controller
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,28 +29,25 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
         return scrollView
     }()
     
-    private let cover: UIImageView = {
+    private var cover: UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.image = UIImage(named: "spider")
         img.contentMode = .scaleAspectFill
         img.layer.cornerRadius = 10
         return img
     }()
     
-    private let titleLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let title = UILabel()
         title.font = UIFont.preferredFont(forTextStyle: .headline)
-        title.text = "Spider-Man"
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
     
-    private let tagsLabel: UILabel = {
+    private var tagsLabel: UILabel = {
         let tags = UILabel()
         tags.font = UIFont.preferredFont(forTextStyle: .footnote)
         tags.textColor = UIColor.gray
-        tags.text = "Adventure, Animation, Family"
         tags.translatesAutoresizingMaskIntoConstraints = false
         return tags
     }()
@@ -53,11 +61,10 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
         return img
     }()
     
-    private let ratingLabel: UILabel = {
+    private var ratingLabel: UILabel = {
         let rating = UILabel()
         rating.font = UIFont.preferredFont(forTextStyle: .footnote)
         rating.textColor = UIColor.gray
-        rating.text = "7.8"
         rating.translatesAutoresizingMaskIntoConstraints = false
         return rating
     }()
@@ -70,27 +77,10 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
         return overview
     }()
     
-    private let descriptionLabel: UILabel = {
+    private var descriptionLabel: UILabel = {
         let description = UILabel()
         description.font = UIFont.preferredFont(forTextStyle: .callout)
         description.textColor = UIColor.gray
-        description.text = """
-        A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-        A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-        A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-        A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-        A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-                A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecra
-        """
         description.numberOfLines = 0
         description.translatesAutoresizingMaskIntoConstraints = false
         return description
@@ -99,8 +89,14 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.delegate = self
+        cover = UIImageView(image: controller.movie.imageCover)
+        titleLabel.text = controller.movie.title
+        tagsLabel.text = controller.movie.description
+        ratingLabel.text = String(format: "%.1f", controller.movie.voteAverage)
+        descriptionLabel.text = controller.movie.overview
+        
         view.addSubview(scrollView)
+        scrollView.delegate = self
         scrollView.addSubview(cover)
         scrollView.addSubview(titleLabel)
         scrollView.addSubview(tagsLabel)
