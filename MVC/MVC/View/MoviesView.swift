@@ -13,7 +13,7 @@ class MoviesView: UIViewController, UITableViewDataSource {
     //MARK: - UITableView Sections    
     private let tableView = UITableView()
     
-    private var controller: MoviesViewController  = MoviesViewController()
+    private var controller: MoviesViewController  = MoviesViewController.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +52,8 @@ extension MoviesView: UITableViewDelegate {
             movie = controller.popular[indexPath.row]
         }
         
-        let controller = MovieDetailsViewController(movie: movie)
-        navigationController?.pushViewController(MovieDetailsView(controller: controller), animated: true)
+        MovieDetailsViewController.shared.setMovie(movie)
+        navigationController?.pushViewController(MovieDetailsView(controller: MovieDetailsViewController.shared), animated: true)
     }
 }
 

@@ -101,11 +101,16 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
         
         title = "Details"
         
-        cover.image = controller.movie.imageCover
-        titleLabel.text = controller.movie.title
-        tagsLabel.text = controller.movie.description
-        ratingLabel.text = String(format: "%.1f", controller.movie.voteAverage)
-        descriptionLabel.text = controller.movie.overview
+        if let movie = controller.movie {
+            cover.image = movie.imageCover
+            titleLabel.text = movie.title
+            tagsLabel.text = movie.description
+            ratingLabel.text = String(format: "%.1f", movie.voteAverage)
+            descriptionLabel.text = movie.overview
+        } else {
+            print("Error loading the movie")
+        }
+
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)

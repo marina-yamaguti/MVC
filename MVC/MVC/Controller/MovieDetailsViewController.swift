@@ -9,13 +9,13 @@ import Foundation
 
 class MovieDetailsViewController {
     
-    let movie: Movie
+    static let shared = MovieDetailsViewController()
     
-    init(movie: Movie) {
+    var movie: Movie?
+    
+    private init() {}
+       
+    func setMovie(_ movie: Movie) {
         self.movie = movie
-    }
-    
-    func setMovie() {
-        
     }
 }

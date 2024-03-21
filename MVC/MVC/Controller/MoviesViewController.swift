@@ -9,6 +9,11 @@ import UIKit
 import Combine
 
 class MoviesViewController {
+    
+    static let shared = MoviesViewController()
+    
+    private init() {}
+    
     //MARK: UITableView Sections
     enum Section: Int, CaseIterable {
         case nowPlaying
@@ -24,7 +29,7 @@ class MoviesViewController {
         }
     }
     
-    private let movieService = MovieService()
+    private let movieService = MovieService.shared
     private var subscriptions = Set<AnyCancellable>()
     
     var sections: [Section] = Section.allCases
