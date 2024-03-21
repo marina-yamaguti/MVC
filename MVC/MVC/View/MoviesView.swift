@@ -9,11 +9,16 @@ import UIKit
 import Combine
 
 class MoviesView: UIViewController, UITableViewDataSource {
+    weak var coordinator: MainCoordinator?
     
     //MARK: - UITableView Sections    
     private let tableView = UITableView()
     
     private var controller: MoviesViewController  = MoviesViewController.shared
+    
+    override func loadView() {
+        super.loadView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +58,7 @@ extension MoviesView: UITableViewDelegate {
         }
         
         MovieDetailsViewController.shared.setMovie(movie)
-        navigationController?.pushViewController(MovieDetailsView(controller: MovieDetailsViewController.shared), animated: true)
+        coordinator?.goToDetails(movie: movie)
     }
 }
 
