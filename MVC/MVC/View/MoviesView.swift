@@ -93,6 +93,8 @@ extension MoviesView {
         
         controller.configureCell(cell, with: movie)
     
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat.greatestFiniteMagnitude)
+        
         return cell
     }
     
