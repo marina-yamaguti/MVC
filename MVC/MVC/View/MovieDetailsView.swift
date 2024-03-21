@@ -23,16 +23,24 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+//        scrollView.contentSize.width = UIScreen.main.bounds.width
         scrollView.backgroundColor = UIColor { traitCollection in
             return traitCollection.userInterfaceStyle == .dark ? .black : .white
         }
         return scrollView
     }()
     
+    private let contentView: UIView = {
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        return contentView
+    }()
+    
     private var cover: UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         img.contentMode = .scaleAspectFill
+        img.clipsToBounds = true
         img.layer.cornerRadius = 10
         return img
     }()
@@ -40,6 +48,7 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
     private var titleLabel: UILabel = {
         let title = UILabel()
         title.font = UIFont.preferredFont(forTextStyle: .headline)
+        title.numberOfLines = 2
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
@@ -48,6 +57,7 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
         let tags = UILabel()
         tags.font = UIFont.preferredFont(forTextStyle: .footnote)
         tags.textColor = UIColor.gray
+        tags.numberOfLines = 3
         tags.translatesAutoresizingMaskIntoConstraints = false
         return tags
     }()
@@ -89,46 +99,57 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cover = UIImageView(image: controller.movie.imageCover)
+        title = "Details"
+        
+        cover.image = controller.movie.imageCover
         titleLabel.text = controller.movie.title
         tagsLabel.text = controller.movie.description
         ratingLabel.text = String(format: "%.1f", controller.movie.voteAverage)
         descriptionLabel.text = controller.movie.overview
         
         view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
         scrollView.delegate = self
-        scrollView.addSubview(cover)
-        scrollView.addSubview(titleLabel)
-        scrollView.addSubview(tagsLabel)
-        scrollView.addSubview(starImage)
-        scrollView.addSubview(ratingLabel)
-        scrollView.addSubview(overviewLabel)
-        scrollView.addSubview(descriptionLabel)
+        contentView.addSubview(cover)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(tagsLabel)
+        contentView.addSubview(starImage)
+        contentView.addSubview(ratingLabel)
+        contentView.addSubview(overviewLabel)
+        contentView.addSubview(descriptionLabel)
         configScrollView()
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.contentOffset.x = 0
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        scrollView.contentOffset.x = 0
+//    }
     
     private func configScrollView() {
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            cover.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            cover.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            cover.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            cover.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            cover.topAnchor.constraint(equalTo: contentView.topAnchor),
             cover.widthAnchor.constraint(equalToConstant: 128),
             cover.heightAnchor.constraint(equalToConstant: 194),
             
             titleLabel.centerYAnchor.constraint(equalTo: cover.centerYAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: cover.trailingAnchor, constant: 12),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             tagsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             tagsLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            tagsLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             
             starImage.bottomAnchor.constraint(equalTo: cover.bottomAnchor, constant: -8),
             starImage.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -143,8 +164,8 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
             
             descriptionLabel.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 16),
             descriptionLabel.leadingAnchor.constraint(equalTo: cover.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-//            descriptionLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            descriptionLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
 }

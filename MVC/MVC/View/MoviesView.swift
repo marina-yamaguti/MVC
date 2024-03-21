@@ -17,6 +17,8 @@ class MoviesView: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Movies"
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.controller.fetchAllMovies(tableView: tableView)
         configViews()
     }
