@@ -65,7 +65,7 @@ class MovieCell: UITableViewCell {
             cover.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
             cover.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             cover.widthAnchor.constraint(equalTo: cover.heightAnchor, multiplier: 0.66),
-            cover.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -8),
+            cover.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -16),
             
             titleLabel.topAnchor.constraint(equalTo: cover.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: cover.trailingAnchor, constant: 8),
