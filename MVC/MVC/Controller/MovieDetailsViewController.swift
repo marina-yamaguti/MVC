@@ -10,6 +10,7 @@ import Foundation
 class MovieDetailsViewController {
     
     static let shared = MovieDetailsViewController()
+    var coordinator: MainCoordinator?
     
     var movie: Movie?
     

@@ -9,10 +9,11 @@ import UIKit
 
 class MovieDetailsView: UIViewController, UIScrollViewDelegate {
     
-    let controller: MovieDetailsViewController
+    weak var coordinator: MainCoordinator?
     
-    init(controller: MovieDetailsViewController) {
-        self.controller = controller
+    let controller: MovieDetailsViewController = MovieDetailsViewController.shared
+    
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
