@@ -10,6 +10,10 @@ import Combine
 import UIKit
 
 struct MovieService {
+    static let shared = MovieService()
+    
+    private init() {}
+    
     //MARK: Movie Types
     enum MoviePlaylist: String {
         case popular = "popular"
@@ -67,7 +71,6 @@ extension MovieService {
             //in case something happens, return a default poster size of 500
             return URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")!
         }
-        
         return url
     }
 }
