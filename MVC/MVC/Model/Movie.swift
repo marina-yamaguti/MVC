@@ -12,7 +12,7 @@ struct MovieResponse: Decodable {
     var results: [Movie]
 }
 
-struct Movie: Decodable, CustomStringConvertible {
+struct Movie: Decodable, CustomStringConvertible, Hashable {
     enum CodingKeys: String, CodingKey {
         case id
         case title

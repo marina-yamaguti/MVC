@@ -62,14 +62,14 @@ class MovieCell: UITableViewCell {
         contentView.addSubview(ratingLabel)
         
         NSLayoutConstraint.activate([
-            cover.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
+            cover.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             cover.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             cover.widthAnchor.constraint(equalTo: cover.heightAnchor, multiplier: 0.66),
             cover.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -16),
             
             titleLabel.topAnchor.constraint(equalTo: cover.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: cover.trailingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -81,7 +81,7 @@ class MovieCell: UITableViewCell {
             starImage.heightAnchor.constraint(equalToConstant: 18),
             
             ratingLabel.leadingAnchor.constraint(equalTo: starImage.trailingAnchor, constant: 4),
-            ratingLabel.centerYAnchor.constraint(equalTo: starImage.centerYAnchor)
+            ratingLabel.centerYAnchor.constraint(equalTo: starImage.centerYAnchor),
         ])
     }
 }
