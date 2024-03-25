@@ -1,10 +1,10 @@
 # MVC
 
 ## Description
-ViewCode project, with MVC architecture.
+ViewCode project, with MVC (Model-View-Controller) architecture.
 
 ## Tecnologies
-UIKit, MVC architecutre and design patterns (to be defined).
+UIKit, MVC architecture and design patterns (Singleton and Coordinator).
 
 ## Features
-Project features.
+Working with API (MovieDB), this is an app to see the most popular and now playing movies, with their description and rating. 
