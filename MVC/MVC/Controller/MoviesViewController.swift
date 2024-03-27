@@ -16,15 +16,15 @@ class MoviesViewController {
     
     //MARK: UITableView Sections
     enum Section: Int, CaseIterable {
-        case nowPlaying
         case popular
+        case nowPlaying
         
         var value: String {
             switch self {
+            case .popular:
+                return "Popular Movies"
             case .nowPlaying:
                 return "Now Playing"
-            case .popular:
-                return "Popular"
             }
         }
     }
@@ -33,11 +33,11 @@ class MoviesViewController {
     private var subscriptions = Set<AnyCancellable>()
     
     var sections: [Section] = Section.allCases
-    var nowPlaying: [Movie] = []
     var popular: [Movie] = []
+    var nowPlaying: [Movie] = []
     
     func fetchAllMovies(tableView: UITableView) {
-        movieService.fetchMovies(fromPlaylist: .nowPlaying)
+        movieService.fetchMovies(fromPlaylist: .popular)
             .flatMap({ movies in
                 movies.publisher
             })
@@ -59,12 +59,12 @@ class MoviesViewController {
                     return
                 }
             }, receiveValue: { movie in
-                self.nowPlaying = movie
+                self.popular = movie
                 self.reloadData(tableView: tableView)
             })
             .store(in: &subscriptions)
         
-        movieService.fetchMovies(fromPlaylist: .popular)
+        movieService.fetchMovies(fromPlaylist: .nowPlaying)
             .flatMap({ movies in
                 movies.publisher
             })
@@ -86,7 +86,7 @@ class MoviesViewController {
                     return
                 }
             }, receiveValue: { movie in
-                self.popular = movie
+                self.nowPlaying = movie
                 self.reloadData(tableView: tableView)
             })
             .store(in: &subscriptions)

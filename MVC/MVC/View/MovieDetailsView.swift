@@ -24,7 +24,6 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-//        scrollView.contentSize.width = UIScreen.main.bounds.width
         scrollView.backgroundColor = UIColor { traitCollection in
             return traitCollection.userInterfaceStyle == .dark ? .black : .white
         }
@@ -100,7 +99,7 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Details"
+        self.title = "Details"
         
         if let movie = controller.movie {
             cover.image = movie.imageCover
@@ -112,7 +111,6 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
             print("Error loading the movie")
         }
 
-        
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         scrollView.delegate = self
@@ -125,10 +123,6 @@ class MovieDetailsView: UIViewController, UIScrollViewDelegate {
         contentView.addSubview(descriptionLabel)
         configScrollView()
     }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        scrollView.contentOffset.x = 0
-//    }
     
     private func configScrollView() {
         

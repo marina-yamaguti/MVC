@@ -13,14 +13,10 @@ class MoviesView: UIViewController {
     
     //MARK: - UITableView Sections    
     private let tableView = UITableView()
-    
     private var controller: MoviesViewController  = MoviesViewController.shared
-    
-    
     private var searchController = UISearchController()
     private var searchedMovies = [Movie]()
     private var isSearching: Bool = false
-    
     
     override func loadView() {
         super.loadView()
@@ -34,7 +30,6 @@ class MoviesView: UIViewController {
         configViews()
     }
 
-    
     private func configViews() {
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
@@ -64,9 +59,9 @@ extension MoviesView: UITableViewDelegate {
             movie = searchedMovies[indexPath.row]
         } else {
             if indexPath.section == 0 {
-                movie = controller.nowPlaying[indexPath.row]
-            } else if indexPath.section == 1 {
                 movie = controller.popular[indexPath.row]
+            } else if indexPath.section == 1 {
+                movie = controller.nowPlaying[indexPath.row]
             }
         }
         
@@ -96,10 +91,10 @@ extension MoviesView: UITableViewDataSource {
         let currentSection = controller.sections[section]
         
         switch currentSection {
-        case .nowPlaying:
-            return controller.nowPlaying.count
         case .popular:
             return controller.popular.count
+        case .nowPlaying:
+            return controller.nowPlaying.count
         }
     }
     
@@ -112,10 +107,10 @@ extension MoviesView: UITableViewDataSource {
             movie = searchedMovies[indexPath.row]
         } else {
             switch currentSection {
-            case .nowPlaying:
-                movie = controller.nowPlaying[indexPath.row]
             case .popular:
                 movie = controller.popular[indexPath.row]
+            case .nowPlaying:
+                movie = controller.nowPlaying[indexPath.row]
             }
         }
         
@@ -158,4 +153,3 @@ extension MoviesView: UISearchBarDelegate {
         tableView.reloadData()
     }
 }
-
